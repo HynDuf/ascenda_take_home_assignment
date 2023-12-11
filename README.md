@@ -46,7 +46,7 @@ The edge cases are included in directory `edge-cases` and is run with check-in d
 - `error_wrong_type.json`: The `valid_to` is in wrong date format. Additionally, the script also checks:
     - Input file is a valid JSON file.
     - All dates are in correct YYYY-MM-DD format.
-    - Offer's `category` exists in the mapping (from `1` to `4`).
+    - Offer's `category` exists in the mapping (i.e. from `1` to `4`).
     - Offer's `merchants` is a list and have at least one element.
     - Merchants' `distance` is valid integer or float (so can be used to compare).
 - `output_0.json`: the filtered offers contains no offer (with `valid_to` only 4 days away from check-in date).

@@ -119,7 +119,7 @@ def filter_nearby_offers(INPUT_FILE, OUTPUT_FILE, checkin_date):
     # Sort final offers by distance
     final_offers = sorted(final_offers, key=lambda x: x['merchants'][0]['distance'])
 
-    # Choose 2 offers with closest merchants
+    # Choose maximum 2 offers with closest merchants
     selected_offers = final_offers[:2]
 
     # Save the selected offers to output.json
