@@ -80,20 +80,18 @@ def filter_nearby_offers(INPUT_FILE, OUTPUT_FILE, checkin_date):
     }
 
     for offer in input_data['offers']:
-        try:
-            category = category_mapping.get(offer['category'])
-            valid_to = datetime.strptime(offer['valid_to'], '%Y-%m-%d')
-        except (ValueError, KeyError) as e:
-            print(f"Error processing offer {offer['id']}: {e}")
-            sys.exit(1)
+        category = category_mapping.get(offer['category'])
+        valid_to = datetime.strptime(offer['valid_to'], '%Y-%m-%d')
 
         if (
              category in accepted_categories and
              valid_to >= checkin_date + timedelta(days=5)
         ):
-            # Sort merchants by distance and select the closest one
-            offer['merchants'] = sorted(offer['merchants'], key=lambda x: x['distance'])
+            # Iterate through all merchants and select the closest one
             closest_merchant = offer['merchants'][0]
+            for merchant in offer['merchants']:
+                if closest_merchant['distance'] > merchant['distance']:
+                    closest_merchant = merchant
 
             # Check and update the closest offer of the corresponding category
             # If there is no offer in the category yet
